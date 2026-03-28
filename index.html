@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="eng">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>birthday</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="scene">
+      <img
+        class="item"
+        id="balloon29"
+        src="Untitled_design__1_-removebg-preview.png"
+        onclick="showPopup('balloon29')"
+        alt="Balloon 29" />
+      <img
+        class="item"
+        id="cake"
+        src="f8248d4257f7e7ab79d5b9f3debbeaed-removebg-preview.png"
+        onclick="showPopup('cake')"
+        alt="Cake" />
+      <img
+        class="item"
+        id="wine"
+        src="Tavernello-Rosso-dItalia-Amabile.png"
+        onclick="showPopup('wine')"
+        alt="Wine" />
+      <img
+        class="item"
+        id="musicbox"
+        src="e13e617448a22a0531318973b8c874e4-removebg-preview.png"
+        onclick="showPopup('musicbox')"
+        alt="Musicbox" />
+    </div>
+    <audio
+      id="birthdaySound"
+      src="Happy_Birthday_to_You_Birthday_Song__Music_Box_.mp3"></audio>
+    <div class="modal-overlay" id="modalOverlay" onclick="closePopup()">
+      <div class="modal-card" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closePopup()">✕</button>
+        <div class="modal-icon" id="modalIcon"></div>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-message" id="modalMessage"></p>
+        <button class="modal-btn" onclick="closePopup()">Close</button>
+      </div>
+    </div>
+
+    <script>
+      const messages = {
+        balloon29: {
+          icon: "🎈",
+          title: "YOOOO",
+          message:
+            "Happy bday! Holy shit, you old af grandpa (°〇°) May this last year of your twenties be the best one yet (˶ᵔᗜᵔ˶)ﾉﾞ",
+        },
+        cake: {
+          icon: "🎂",
+          title: "The older you grow, the wiser you become",
+          message:
+            "You're vintage as this red velvet cake (it was invented in 1920s, I checked). Wishing you a long life and sweet moments as this cake ◝(ᵔᗜᵔ)◜ ",
+        },
+        wine: {
+          icon: "🥂",
+          title: "Cheers!",
+          message: "Стариш као добро вино °🥂⋆.ೃ🍾࿔*:･",
+        },
+        musicbox: {
+          icon: "🎶",
+          title: "Tune for you :D",
+          message:
+            "May your life always be filled with beautiful melodies 𝄞⨾💿✮˚.⋆",
+        },
+      };
+
+      function showPopup(type) {
+        const data = messages[type];
+        document.getElementById("modalIcon").textContent = data.icon;
+        document.getElementById("modalTitle").textContent = data.title;
+        document.getElementById("modalMessage").textContent = data.message;
+        document.getElementById("modalOverlay").classList.add("active");
+        if (type === "musicbox") {
+          const sound = document.getElementById("birthdaySound");
+          sound.currentTime = 0;
+          sound.play();
+        }
+      }
+
+      function closePopup() {
+        document.getElementById("modalOverlay").classList.remove("active");
+        const sound = document.getElementById("birthdaySound");
+        sound.pause();
+        sound.currentTime = 0;
+      }
+
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") closePopup();
+      });
+    </script>
+  </body>
+</html>
